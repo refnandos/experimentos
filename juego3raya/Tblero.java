@@ -46,12 +46,12 @@ public class Tblero {
         }
     }
     
-        public void buscarcoordenada(char i,Jugadores players)
+        public boolean juego(char i,Jugadores players)
 {//inicio metodo buscarcoordenada
         String[][] auxtab;
         Jugador[] avatares = players.getListajug();
         auxtab = this.tablero;
-        System.out.println("introduzca la posición");
+        System.out.println("introduzca la posición para: "+i);
         int posicion= leer.nextInt();
         boolean libre = true;
         int fila =(posicion%2==0)?posicion/(auxtab.length+1):posicion/(auxtab.length);
@@ -79,8 +79,50 @@ public class Tblero {
             rellenar_tablero(auxtab,i);
         }else{
             System.out.print(posicion+" es una posicion que ya esta ocupaoda, seleccione otra poscicion: ");
-            buscarcoordenada(i,players);
+            juego(i,players);
         }
-        
+        Jugador pato=null;
+        for(int j = 0 ; j<avatares.length ; j++){
+            if (avatares[j].getAvatar()==i)
+                pato = avatares[j];
+        }
+        return comprobarganador(auxtab,i,pato.getNombre());
 }//fin metodo buscarcoordenada
+        
+        
+        
+        public static boolean comprobarganador(String[][] auxtab,char i,String nomjgdr)
+{//inicio funcion comprovar ganador
+        boolean zi=false;
+        int j=0;
+        int k=0;
+        int contador = 0;
+        int contadorcol =0;
+        int contadordiag =0;
+        int contadordiagder =0;
+        String [] comprueba=new String [auxtab.length];
+        while(!zi&&k<auxtab.length){
+            contador=0;
+            contadorcol=0;
+            contadordiag=0;
+            contadordiagder=0;
+            j=0;
+            while(j<auxtab.length){
+                comprueba[j]=i+"";
+                contador=(comprueba[j].equals(auxtab[k][j]))?contador+1:contador;
+                contadorcol=(comprueba[j].equals(auxtab[j][k]))?contadorcol+1:contadorcol;
+                contadordiag=(comprueba[j].equals(auxtab[j][j]))?contadordiag+1:contadordiag;
+                contadordiagder=(comprueba[j].equals(auxtab[auxtab.length-1-j][j]))?contadordiagder+1:contadordiagder;
+                j++;
+            }
+            zi=(contador==auxtab.length||contadorcol==auxtab.length||contadordiag==auxtab.length||contadordiagder==auxtab.length);
+            
+            k++;
+        }
+        if (zi){
+                    System.out.println(nomjgdr+ " es el ganador");
+                }
+        return zi;
+}//fin funcion comprobar ganador
+        
 }
