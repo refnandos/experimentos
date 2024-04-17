@@ -41,6 +41,10 @@ public class Jugador {
         this.siguiente =siguiente;
     }
     
+    public Jugador getSiguiente(){
+        return this.siguiente; 
+    }
+    
     public String getNombreSiguiente(){
         return siguiente.getNombre();
     }

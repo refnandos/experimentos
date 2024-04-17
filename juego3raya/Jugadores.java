@@ -121,6 +121,8 @@ public class Jugadores {
         while (this.listajug[i].getTurno()!=true){
             i++;
         }
+        this.listajug[i].setTurno(false);
+        this.listajug[i].getSiguiente().setTurno(true);
         return this.listajug[i];
     }
     
@@ -134,5 +136,10 @@ public class Jugadores {
             }
         }
     }
+    
+    public void turno_sig(){
+        
+    }
 
+    
 }
