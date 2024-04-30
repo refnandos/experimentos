@@ -14,11 +14,13 @@ public class Jugador {
     private char avatar;
     private boolean turno;
     private Jugador siguiente;
+    private int victorias;
 
     public Jugador(String nombre, char avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.turno = false;
+        this.victorias=0;
     }
 
     public String getNombre() {
@@ -48,5 +50,15 @@ public class Jugador {
     public String getNombreSiguiente(){
         return siguiente.getNombre();
     }
+
+    public int getVictorias() {
+        return victorias;
+    }
+
+    public void setVictorias(int victorias) {
+        this.victorias = victorias;
+    }
+    
+    
     
 }

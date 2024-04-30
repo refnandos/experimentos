@@ -9,22 +9,33 @@ import java.util.Scanner;
  *
  * @author Usuario
  */
-public class Tblero {
+public class Tblero extends JuegoMadre {
     static Scanner leer = new Scanner(System.in);
-    String [][] tablero;
+    Jugadores players;
+    private String [][] tablero;
+    private boolean terminado;
     
-    public Tblero(){
-        tablero = new String [0][0];
-    }
+/*
+ººººCREACION DEL TABLERO UNA VEZ DECLARADOººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+*/    
     
-    public void crear_tablero(){
+    public Tblero(int limpiar){
         int tamaño;
+        players= new Jugadores();
+        players.crearjugador(limpiar);
+        players.crearjugador(0);
+        players.mostrar_jugadores();
+        players.primero_jugar();
         System.out.println("de que tamaño sera el tablero de  juego?");
         tamaño = leer.nextInt();
         String [][] auxtab = new String [tamaño] [tamaño];
         rellenar_tablero(auxtab,1);
         this.tablero = auxtab;
     }
+    
+/*
+ººººmetodo para rellenar el tablero con las posiciones desponiblesºººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+*/    
     
     private void rellenar_tablero(String[][] auxtab,int tipo){
         int relleno = 1;
@@ -46,13 +57,32 @@ public class Tblero {
         }
     }
     
-        public boolean juego(char i,Jugadores players)
+/*
+ººººMÉTODO QUE REGRESA UN BOOLEAN QUE SEÑALA EL ESTADO DEL JUEGOººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+*/    
+    
+    @Override
+    public boolean isTerminado() {
+        return terminado;
+    }
+    
+/*
+ººººMETODO QUE PONE EN MARCHA EL TURNO DEL JUGADOR ACTUALºººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+*/    
+    
+    
+    
+        public void juego()
 {//inicio metodo buscarcoordenada
+        char i = players.turno_actual().getAvatar();
         String[][] auxtab;
-        Jugador[] avatares = players.getListajug();
+        Jugador[] avatares = this.players.getListajug();
         auxtab = this.tablero;
+        System.out.println("este es el tablero actual");
+        rellenar_tablero(auxtab,i);
         System.out.println("introduzca la posición para: "+i);
         int posicion= leer.nextInt();
+        posicion = validarpos (posicion);
         boolean libre = true;
         int fila =(posicion%2==0)?posicion/(auxtab.length+1):posicion/(auxtab.length);
         int columna = (posicion-auxtab.length*fila)-1;
@@ -79,19 +109,36 @@ public class Tblero {
             rellenar_tablero(auxtab,i);
         }else{
             System.out.print(posicion+" es una posicion que ya esta ocupaoda, seleccione otra poscicion: ");
-            juego(i,players);
+            juego();
         }
         Jugador pato=null;
         for(int j = 0 ; j<avatares.length ; j++){
             if (avatares[j].getAvatar()==i)
                 pato = avatares[j];
         }
-        return comprobarganador(auxtab,i,pato.getNombre());
+        comprobarganador(auxtab,i,pato.getNombre());
+        players.victoria(isTerminado());
+        players.pasar_turno();
 }//fin metodo buscarcoordenada
+    
+/*
+ººººmetodo para validar que la posicion introducida por el jugador es validaºººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+*/    
+    
+        public int validarpos (int posicion){
+            int limitador = this.tablero.length*this.tablero.length;
+            while(posicion > limitador || posicion<1){
+                System.out.println("posicion no valida introduzca una dentro del rango" + 1 + " y " + limitador);
+                posicion = leer.nextInt();
+            }
+            return posicion;
+        }
+    
+/*
+ººººMETODO PARA COMPROBAR LA VICTORIA DE UNO DE LOS JUGADORESººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
+*/    
         
-        
-        
-        public static boolean comprobarganador(String[][] auxtab,char i,String nomjgdr)
+        public  void comprobarganador(String[][] auxtab,char i,String nomjgdr)
 {//inicio funcion comprovar ganador
         boolean zi=false;
         int j=0;
@@ -122,7 +169,10 @@ public class Tblero {
         if (zi){
                     System.out.println(nomjgdr+ " es el ganador");
                 }
-        return zi;
+        this.terminado = zi;
+        
 }//fin funcion comprobar ganador
+
+
         
 }
