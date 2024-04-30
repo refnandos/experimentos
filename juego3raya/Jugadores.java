@@ -26,12 +26,15 @@ public class Jugadores {
     
     
 
-    public void crearjugador() {
+    public  void crearjugador(int limpiar) {
         String nombre;
         char avatar;
         /*---*/
         System.out.println("Indique el nombre del jugador");
         nombre = comprobar_nombre(leer.nextLine());
+        if(limpiar>0){
+            nombre = comprobar_nombre(leer.nextLine());
+        }
         /*---*/
         System.out.println("Eliga un avatar (no puede ser un numero)");
         avatar = comprobar_avatar(leer.nextLine());
@@ -121,9 +124,17 @@ public class Jugadores {
         while (this.listajug[i].getTurno()!=true){
             i++;
         }
+        
+        return this.listajug[i];
+    }
+    
+    public void pasar_turno(){
+        int i = 0;
+        while (this.listajug[i].getTurno()!=true){
+            i++;
+        }
         this.listajug[i].setTurno(false);
         this.listajug[i].getSiguiente().setTurno(true);
-        return this.listajug[i];
     }
     
     
@@ -137,8 +148,13 @@ public class Jugadores {
         }
     }
     
-    public void turno_sig(){
-        
+    public void victoria (boolean ganar){
+        if(ganar){
+        Jugador actual = turno_actual();
+        int sumador = actual.getVictorias();
+        sumador=actual.getVictorias()+1;
+        actual.setVictorias(sumador);
+        }
     }
 
     
