@@ -13,6 +13,8 @@ import javax.xml.bind.annotation.*;
 @XmlType(propOrder = {"nombreSocio","direccion","fechaAlta"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Socio {
+    
+    //se crean las variables con los valores obtenidos del archivo  xml
     @XmlAttribute(required = true)
     private Integer  id;
     @XmlElement(name = "nombre")
@@ -21,9 +23,12 @@ public class Socio {
     private String direccion;
     @XmlElement (name="alta")
     private String fechaAlta;
-    
+    //las variables ya tineen valores, no hace falta un constructor
     public Socio(){
     }
+    
+    
+    
     public Socio (Integer id, String nombreSocio, String direccion, String fechaAlta){
         this.id = id;
         this.nombreSocio = nombreSocio;
@@ -31,6 +36,23 @@ public class Socio {
         this.fechaAlta = fechaAlta;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNombreSocio() {
+        return nombreSocio;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getFechaAlta() {
+        return fechaAlta;
+    }
+
+    
     @Override
     public String toString() {
         return "Socio{" + "id=" + id + ", nombreSocio=" + nombreSocio + ", direccion=" + direccion + ", fechaAlta=" + fechaAlta + '}';

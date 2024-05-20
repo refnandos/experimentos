@@ -3,32 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juego3raya;
-import java.util.Scanner;
+package ejercicio;
+import java.util.Scanner; 
 import java.util.Random;
 /**
  *
  * @author Usuario
  */
 public class BuscaNum extends JuegoMadre {
-    static Scanner leer = new Scanner(System.in);
+    static Scanner leer = new Scanner(System.in); 
     static Random aleatorio = new Random();
     Jugadores players;
     int numeromisterio;
     private boolean terminado;
     int [] numerosech;
+    
+    
 
     public BuscaNum(int limpiar) {
+        GESTORDATOSXML datos = new GESTORDATOSXML();
+        
+        
+        
         players= new Jugadores();
         int rango;
-        System.out.println("dentro de que rango se dara la busqueda del numero?");
-        rango = confirmarran(leer.nextInt());
+        // System.out.println("dentro de que rango se dara la busqueda del numero?"); //esto es parte del codigo sin XML
+        rango = confirmarran(datos.getTamaño());
         this.numeromisterio = aleatorio.nextInt(rango);
         numerosech = new int[rango];
         
         
-        players.crearjugador(limpiar);
-        players.crearjugador(0);
+        players.crearjugador(datos.getNombre1(), datos.getFicha1().charAt(0));
+        players.crearjugador(datos.getNombre2(), datos.getFicha2().charAt(0));
         players.mostrar_jugadores();
         players.primero_jugar();
         
@@ -71,7 +77,6 @@ public class BuscaNum extends JuegoMadre {
             System.out.println(nomjgdr+" adivino el numero misterioso");
         }
         this.terminado = victoria;
-        
     }
 
     @Override

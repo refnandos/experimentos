@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juego3raya;
+package ejercicio;
 import java.util.Scanner;
 /**
  *
@@ -18,19 +18,24 @@ public class Juego3raya {
         //Jugadores players= new Jugadores();
         JuegoMadre[] juegos;
         boolean vacio=false;
-        
+        GESTORDATOSXML datos = new GESTORDATOSXML();
 /*
 ºººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
-*/   
-        System.out.println("cuantos juegos deseas crear?");
-        juegos = new JuegoMadre[leer.nextInt()];
+*/      
+        //System.out.println("cuantos juegos deseas crear?"); //esto es parte del codigo sin XML
+        juegos = new JuegoMadre[datos.getId()];
         for (int i = 0; i < juegos.length; i++) {
             int select;
+            /*
             System.out.println("El juego numero "+(i+1)+" será \n"
                     + "1:tres en raya \n"
                     + "o \n"
-                    + "2:adivinar?");
-            select = leer.nextInt();
+                    + "2:adivinar?");*/ //esto es parte del codigo sin XML
+            if (i==0){
+            select = datos.getRaya();
+            }else{
+                select = datos.getRandom();
+            }
             if(select == 1){
                 int limpiar = i;
                 juegos[i]=new Tblero(limpiar);

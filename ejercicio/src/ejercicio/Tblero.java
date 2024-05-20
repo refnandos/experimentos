@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juego3raya;
+package ejercicio;
 import java.util.Scanner;
 /**
  *
@@ -14,7 +14,7 @@ public class Tblero extends JuegoMadre {
     Jugadores players;
     private String [][] tablero;
     private boolean terminado;
-    
+    GESTORDATOSXML datos = new GESTORDATOSXML();
 /*
 ººººCREACION DEL TABLERO UNA VEZ DECLARADOººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººººº
 */    
@@ -22,12 +22,12 @@ public class Tblero extends JuegoMadre {
     public Tblero(int limpiar){
         int tamaño;
         players= new Jugadores();
-        players.crearjugador(limpiar);
-        players.crearjugador(0);
+        players.crearjugador(datos.getNombre1(), datos.getFicha1().charAt(0));
+        players.crearjugador(datos.getNombre2(), datos.getFicha2().charAt(0));
         players.mostrar_jugadores();
         players.primero_jugar();
-        System.out.println("de que tamaño sera el tablero de  juego?");
-        tamaño = leer.nextInt();
+        //System.out.println("de que tamaño sera el tablero de  juego?"); //esto es parte del codigo sin XML
+        tamaño = datos.getTamaño();
         String [][] auxtab = new String [tamaño] [tamaño];
         rellenar_tablero(auxtab,1);
         this.tablero = auxtab;

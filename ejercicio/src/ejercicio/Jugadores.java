@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juego3raya;
+package ejercicio;
 
 import java.util.Scanner;
 
@@ -26,20 +26,22 @@ public class Jugadores {
     
     
 
-    public  void crearjugador(int limpiar) {
-        String nombre;
+    public  void crearjugador(String nombre,char a) {
         char avatar;
         /*---*/
-        System.out.println("Indique el nombre del jugador");
-        nombre = comprobar_nombre(leer.nextLine());
+        //System.out.println("Indique el nombre del jugador"); //esto es parte del codigo sin XML
+        nombre = comprobar_nombre(nombre);
+        /* no usable
         if(limpiar>0){
             nombre = comprobar_nombre(leer.nextLine());
         }
+        */
         /*---*/
-        System.out.println("Eliga un avatar (no puede ser un numero)");
-        avatar = comprobar_avatar(leer.nextLine());
+        //System.out.println("Eliga un avatar (no puede ser un numero)"); //esto es parte del codigo sin XML
+        /*avatar = comprobar_avatar(a+"si");*/
+        avatar = a;
         /*---*/
-        Jugador J1 = new Jugador(nombre, avatar);
+        Jugador J1 = new Jugador(nombre, a);
         if (this.listajug.length > 0) {
             this.listajug[listajug.length - 1].setSiguiente(J1);
             J1.setSiguiente(this.listajug[0]);
@@ -107,11 +109,12 @@ public class Jugadores {
     
     public void primero_jugar(){
         int pos;
-        System.out.println("quien sera el primero en jugar?");
-        for (int i = 0; i < this.listajug.length; i++) {
+        //System.out.println("quien sera el primero en jugar?"); //esto es parte del codigo sin XML
+        /*for (int i = 0; i < this.listajug.length; i++) {
             System.out.println((i+1)+":"+this.listajug[i].getNombre());
-        }
-        pos = leer.nextInt()-1;
+        }*/                                                     //esto es parte del codigo sin XML
+        /*pos = leer.nextInt()-1;*/
+        pos = 1;
         while (pos <0||pos>=this.listajug.length){
             System.out.println("fuera de rango, seleccione otra vez");
             pos = leer.nextInt()-1;

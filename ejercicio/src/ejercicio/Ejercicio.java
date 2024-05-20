@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ejercicio;
 import java.io.*;
 import java.util.Locale;
@@ -20,7 +21,7 @@ public class Ejercicio {
      * @param args the command line arguments
      */
     
-    
+    /*
    
     public static void main(String[] args) {
         
@@ -28,7 +29,12 @@ public class Ejercicio {
         try{
         JAXBContext contexto = JAXBContext.newInstance(Socio.class);
         um = contexto.createUnmarshaller();
-        Socio s = (Socio) um.unmarshal(new File("C:\\Users\\fer\\OneDrive\\Documentos\\NetBeansProjects\\ejercicio\\src\\ejercicio\\Socio (2).xml"));
+        Socio s = (Socio) um.unmarshal(new File("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\ejercicio\\src\\ejercicio\\Socio (2).xml"));
+        
+        
+        
+            System.out.println(s.getId());
+        
         System.out.println(s);
         Marshaller m = contexto.createMarshaller();
         Socio s1 = new Socio (1, "Armando Fuentes", "C/Fontaneria 1", "01/09/1990");
@@ -38,9 +44,9 @@ public class Ejercicio {
         }catch(Exception ex){
             System.out.println(ex);
         }
-         
+    */
         
-        
+        //colecciones, clases genericas, interfaces, herencias, 
          /*10.8
         System.out.println("Nombre del Fichero");
         String fichOriginal = new Scanner(System.in).nextLine();
