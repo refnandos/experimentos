@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<datos id="2">
+    <juego3raya>
+        <cantidadjuegos>3</cantidadjuegos>
+        <Tblero id="1">
+            <tamaño>3</tamaño>
+            <jugadores>
+                <jugador>
+                    <nombre>Hitler </nombre>
+                    <ficha>xasa</ficha>
+                </jugador>
+                <jugador>
+                    <nombre>Stalin </nombre>
+                    <ficha>oaso</ficha>
+                </jugador>
+            </jugadores>
+        </Tblero>
+        <BuscaNum id="2">
+            <rango>3</rango>
+            <jugadores>
+                <jugador>
+                    <nombre>pedro </nombre>
+                    <ficha>xasa</ficha>
+                </jugador>
+                <jugador>
+                    <nombre>ocaso </nombre>
+                    <ficha>oaso</ficha>
+                </jugador>
+                <jugador>
+                    <nombre>saul </nombre>
+                    <ficha>lana</ficha>
+                </jugador>
+            </jugadores>
+            
+        </BuscaNum>
+    </juego3raya>
+</datos>
+
